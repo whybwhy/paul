@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+
+            <Pattern>
+
+                %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
+
+            </Pattern>
+
+        </layout>
+
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+
+        <file>apache.log</file>
+
+
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <fileNamePattern>gsb_log.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <minIndex>1</minIndex>
+
+            <maxIndex>3</maxIndex>
+
+        </rollingPolicy>
+
+
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+
+            <maxFileSize>50MB</maxFileSize>
+
+        </triggeringPolicy>
+
+
+
+        <append>true</append>
+
+        <encoder>
+
+            <pattern>%d [%thread] %-5level %logger - %msg%n</pattern>
+
+        </encoder>
+
+
+
+    </appender>
+
+    <logger name="org.springframework.jdbc.core.StatementCreatorUtils">
+
+        <level value="debug" />
+
+    </logger>
+
+    <logger name="org.springframework">
+
+        <level value="debug" />
+
+    </logger>
+
+    <logger name="net.sf.ehcache">
+
+        <level value="debug" />
+
+    </logger>
+
+    <logger name="com.my.framework">
+
+        <level value="debug" />
+
+    </logger>
+
+    <logger name="jdbc" level="OFF"/>
+    <logger name="jdbc.sqlonly" level="OFF"/>
+    <logger name="jdbc.sqltiming" level="DEBUG"/>
+    <logger name="jdbc.audit" level="OFF"/>
+    <logger name="jdbc.resultset" level="OFF"/>
+    <logger name="jdbc.resultsettable" level="DEBUG"/>
+    <logger name="jdbc.connection" level="OFF"/>
+
+    <root level="debug">
+
+        <appender-ref ref="CONSOLE" />
+
+        <appender-ref ref="FILE" />
+
+    </root>
+
+</configuration>
