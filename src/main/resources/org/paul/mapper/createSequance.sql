@@ -1,0 +1,66 @@
+USE practice
+
+
+CREATE TABLE TB_SEQUENCES ( name varchar(32), currval BIGINT UNSIGNED ) ENGINE=InnoDB;
+
+-- 시퀀스 생성
+DELIMITER $$
+CREATE PROCEDURE `create_sequence`(IN the_name text)
+MODIFIES SQL DATA
+DETERMINISTIC
+BEGIN
+    DELETE FROM TB_SEQUENCES WHERE name=the_name;
+    INSERT INTO TB_SEQUENCES VALUES (the_name, 0);
+END
+
+-- 시퀀스 삭제
+DELIMITER $$
+CREATE PROCEDURE `drop_sequence` (IN the_name text)
+MODIFIES SQL DATA
+DETERMINISTIC
+BEGIN
+    DELETE FROM TB_SEQUENCES WHERE name=the_name;
+END
+
+-- 시퀀스 조회
+DELIMITER $$
+CREATE FUNCTION `currval` (the_name varchar(32))
+RETURNS BIGINT UNSIGNED
+READS SQL DATA
+DETERMINISTIC
+BEGIN
+    DECLARE ret BIGINT UNSIGNED;
+    SELECT currval INTO ret FROM TB_SEQUENCES WHERE name=the_name limit 1;
+    RETURN ret;
+END
+
+-- 시퀀스 신규 생성
+DELIMITER $$
+CREATE FUNCTION `nextval`(the_name varchar(32))
+RETURNS BIGINT UNSIGNED
+MODIFIES SQL DATA
+DETERMINISTIC
+BEGIN
+    DECLARE ret BIGINT UNSIGNED;
+    UPDATE TB_SEQUENCES SET currval=currval+1 WHERE name=the_name;
+    SELECT currval INTO ret FROM TB_SEQUENCES WHERE name=the_name limit 1;
+    RETURN ret;
+END
+
+-- 확인
+SELECT * FROM TB_SEQUENCES
+
+-- 신규 시퀀스 생성
+CALL create_sequence ('BOARD')
+SELECT @RESULT
+
+INSERT INTO TB_SEQUENCES VALUES ('BOARD', 0);
+
+-- 조회
+SELECT currval('BOARD')
+-- CALL currval('BOARD')
+-- @RESULT
+
+
+
+
