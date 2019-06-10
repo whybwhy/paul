@@ -1,8 +1,14 @@
 package org.paul.controller;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.paul.domain.SampleDTO;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -71,7 +77,7 @@ public class SampleController {
     // - String : JSP 파일명
     // - DTO : JSON by @ResponseBody
     // - ResponseEntity : Http Header 정보과 내용을 정의
-    // - Model, ModelAndView
+    // - Model, ModelAndView : Model로 데이터를 반환 &화면까지 같이 지정하는 경우
     // - HttpHeaders : Http Header 메세지만 전달할 용도
     @RequestMapping("/return/void")
     public void testVoid() {
@@ -88,8 +94,29 @@ public class SampleController {
         SampleDTO dto = new SampleDTO();
         dto.setAge(20);
         dto.setName("whybwhy");
-        return dto;
+        return dto; // 템플릿 불필요,DTO에 @DateTimeFormatd을 사용할수 없다.
     }
 
+    @RequestMapping("/return/responseEntity")
+    public ResponseEntity<String> testResponseEntity() {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        ResponseEntity result;
+
+        try {
+
+            SampleDTO dto = new SampleDTO();
+            dto.setName("whybwhy");
+            dto.setAge(39);
+
+            result = new ResponseEntity<>(new ObjectMapper().writeValueAsString(dto), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            result = new ResponseEntity<>(null, headers, HttpStatus.BAD_REQUEST);
+        }
+
+        return result;
+    }
 
 }

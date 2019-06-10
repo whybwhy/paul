@@ -2,6 +2,8 @@ package org.paul.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.ServletRegistration;
+
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -18,4 +20,9 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
         return new String[]{"/"};
     }
 
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        super.customizeRegistration(registration);
+        registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
+    }
 }
