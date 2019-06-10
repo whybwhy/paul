@@ -23,7 +23,7 @@ public class RootConfig {
         //hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
         hikariConfig.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
         //hikariConfig.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/practice?characterEncoding=UTF-8&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false");
-        hikariConfig.setJdbcUrl("jdbc:log4jdbc:mysql://127.0.0.1:3306/practice?characterEncoding=UTF-8&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false");
+        hikariConfig.setJdbcUrl("jdbc:log4jdbc:mysql://127.0.0.1:3306/practice?characterEncoding=UTF-8&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true");
         hikariConfig.setUsername("whybwhy");
         hikariConfig.setPassword("test2186!");
 
