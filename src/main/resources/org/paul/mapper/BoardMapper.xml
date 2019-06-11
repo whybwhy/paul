@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.paul.mapper.BoardMapper">
-    <select id="getListByXml" resultType="String">
+    <select id="getListByXml" resultType="org.paul.domain.BoardVO">
         SELECT bno, title, content, writer, regDate, updateDate
         FROM tbl_board
         WHERE bno > 0
@@ -33,4 +33,10 @@
     <delete id="delete">
         DELETE FROM tbl_board where bno = #{bno}
     </delete>
+
+    <update id="update">
+        UPDATE  tbl_board
+        SET     title = #{title}, content = #{content}, updateDate = now()
+        WHERE   bno = #{bno}
+    </update>
 </mapper>

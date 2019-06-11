@@ -19,6 +19,8 @@ public interface BoardMapper {
     BoardVO read(Long bno);
 
     int delete(long bno);
+
+    int update(BoardVO board);
     //  인터페이스에서는 선언하는 메소드들은 기본적으로 public
     //  Modifier 'public' is redundant for interface methods
     //  public List<BoardVO> getList();

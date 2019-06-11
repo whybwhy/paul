@@ -67,4 +67,15 @@ public class BoardMapperTests {
     public void testDelete() {
         log.info(Integer.toString(mapper.delete(10l)));
     }
+
+    @Test
+    public void testUpdate() {
+        BoardVO board = new BoardVO();
+        board.setBno(5l);
+        board.setTitle("타이틀5");
+        board.setContent("컨텐츠5");
+
+        int count = mapper.update(board);
+        log.info(Integer.toString(count));
+    }
 }

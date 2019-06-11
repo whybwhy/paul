@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan(basePackages = {"org.paul.sample"})
+@ComponentScan(basePackages = {"org.paul.sample","org.paul.service"})
 @MapperScan(basePackages = {"org.paul.mapper"})
 public class RootConfig {
     @Bean
