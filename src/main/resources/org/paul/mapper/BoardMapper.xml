@@ -8,6 +8,7 @@
         SELECT bno, title, content, writer, regDate, updateDate
         FROM tbl_board
         WHERE bno > 0
+        ORDER BY bno DESC
     </select>
 
     <insert id="insert">

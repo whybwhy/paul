@@ -25,19 +25,23 @@ public class BoardController {
         model.addAttribute("list", service.getList());
     }
 
-    @GetMapping("/get")
+    @GetMapping({"/get", "/modify"})
     public void read(@RequestParam("bno") Long bno, Model model) {
         model.addAttribute("board", service.get(bno));
     }
 
+    @GetMapping("/register")
+    public void register() {
+
+    }
+
     @PostMapping("/register")
     public String register(BoardVO board, RedirectAttributes redirectAttributes) {
+        log.info(board.toString());
         service.register(board);
         redirectAttributes.addFlashAttribute("result", board.getBno());
         return "redirect:/board/list";
     }
-
-
 
     @PostMapping("/modify")
     public String modify(BoardVO board, RedirectAttributes redirectAttributes) {
