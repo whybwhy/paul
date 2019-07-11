@@ -9,11 +9,18 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = {"org.paul.sample","org.paul.service"})
+@ComponentScan(basePackages = "org.paul.aop")
+@EnableAspectJAutoProxy
+@EnableTransactionManagement
+
 @MapperScan(basePackages = {"org.paul.mapper"})
 public class RootConfig {
     @Bean
@@ -39,5 +46,10 @@ public class RootConfig {
         sqlSessionFactory.setDataSource(dataSource());
 
         return (SqlSessionFactory) sqlSessionFactory.getObject();
+    }
+
+    @Bean
+    public DataSourceTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
     }
 }

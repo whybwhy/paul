@@ -3,7 +3,7 @@ package org.paul.mapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
-public interface SampleMapper {
+public interface Sample2Mapper {
 
     @Select("SELECT content FROM practice.table_board LIMIT 1")
     public String getData();
