@@ -1,10 +1,16 @@
 package org.paul.pmd;
 
-public class Loop {
+import java.util.ArrayList;
+import java.util.List;
 
-    public static void main(String ... args) {
-        for (int i=0 ; i < 10 ; i++) {
+public class LoopExample {
 
-        }
+    public static void main(String[] args) {
+
+        List<String> list = new ArrayList<>();
+
+        System.out.println(list instanceof List);
+        System.out.println(list instanceof ArrayList);
+
     }
 }

@@ -16,8 +16,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan(basePackages = {"org.paul.sample","org.paul.service"})
+@ComponentScan(basePackages = {"org.paul.sample","org.paul.service", "org.paul.core"})
 @ComponentScan(basePackages = "org.paul.aop")
+
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
 
