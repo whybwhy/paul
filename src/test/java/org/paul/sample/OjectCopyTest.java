@@ -46,7 +46,7 @@ public class OjectCopyTest {
         System.out.println("reference = " + (master == feather));
         System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
 
-        master = "updated";
+        master = "updated"; // 재할당. copy 관계 끝.
 
         System.out.println("reference = " + (master == feather));
         System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
@@ -85,6 +85,29 @@ public class OjectCopyTest {
 
         System.out.println(master);
         System.out.println(feather);
+    }
+
+    @Test
+    public void shallowCopyByList3() {
+
+        List<Object> master = new ArrayList();
+        master.add("1");
+        master.add(new Member());
+
+
+        List<Object> feather = master;
+
+        master.add("master");
+        feather.add("feather");
+
+        System.out.println("reference = " + (master == feather));
+        System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
+
+        feather = new ArrayList();  // 재할당. Shallow Copy 관계 끝
+
+        System.out.println("reference = " + (master == feather));
+        System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
+
     }
 
     @Test
