@@ -30,31 +30,65 @@ public class OjectCopyTest {
     }
 
     @Test
-    public void copyByShallow() {
-
-        // TODO Shallow Copy : String
+    public void shallowCopyByString1() {
         String master = "origin";
         String feather = master;
 
-        System.out.println(master == feather);
-        System.out.println(master.hashCode() + " : " + feather.hashCode());
-        System.out.println(master.equals(feather));
-
-        // TODO Shallow Copy : List
-        List<Object> orgine = new ArrayList();
-
-        orgine.add("1");
-        orgine.add(new Member());
-        orgine.add(4);
-        List<Object> copied = orgine;
-
-
-        System.out.println(orgine == copied);
-        System.out.println(orgine.hashCode() + " : " + copied.hashCode());
+        System.out.println("reference = " + (master == feather));
+        System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
     }
 
     @Test
-    public void copyByDeep() {
+    public void shallowCopyByString2() {
+        String master = "origin";
+        String feather = master;
+
+        System.out.println("reference = " + (master == feather));
+        System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
+
+        master = "updated";
+
+        System.out.println("reference = " + (master == feather));
+        System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
+    }
+
+
+    @Test
+    public void shallowCopyByList1() {
+
+        List<Object> master = new ArrayList();
+        master.add("1");
+        master.add(new Member());
+
+        List<Object> feather = master;
+
+        System.out.println("reference = " + (master == feather));
+        System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
+
+    }
+
+    @Test
+    public void shallowCopyByList2() {
+
+        List<Object> master = new ArrayList();
+        master.add("1");
+        master.add(new Member());
+
+
+        List<Object> feather = master;
+
+        master.add("master");
+        feather.add("feather");
+
+        System.out.println("reference = " + (master == feather));
+        System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
+
+        System.out.println(master);
+        System.out.println(feather);
+    }
+
+    @Test
+    public void deepCopyByList1() {
 
         ArrayList<Member> master = new ArrayList();   // clone 사용을 위해 ArrayList로 선언
         master.add(member);
@@ -63,17 +97,27 @@ public class OjectCopyTest {
         /*ArrayList<Member> feather = new ArrayList();    // Deep Copy 2
         feather.addAll(master);*/
 
-        System.out.println(master == feather);
-        // equals 와 hashcode 상호보완
-        System.out.println(master.hashCode() + " : " + feather.hashCode());
-        System.out.println(master.equals(feather));
+        System.out.println("reference = " + (master == feather));
+        System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
 
-        member.setAge(30);
-        member.setEmail("whybwhy@gmail.com");
-        member.setName("copied");
+    }
 
-        System.out.println(master);
-        System.out.println(feather);
+    @Test
+    public void deepCopyByList2() {
+
+        ArrayList<Member> master = new ArrayList();   // clone 사용을 위해 ArrayList로 선언
+        master.add(member);
+
+        ArrayList<Member> feather = (ArrayList<Member>) master.clone(); // Deep Copy 1
+
+        System.out.println("reference = " + (master == feather));
+        System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
+
+        master.add(new Member());
+        feather.add(new Member());
+
+        System.out.println("reference = " + (master == feather));
+        System.out.println("hashcode() = " + (master.hashCode() == feather.hashCode()) + ", equals() = " + master.equals(feather));
 
     }
 }
