@@ -17,7 +17,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {RootConfig.class})
 @Slf4j
-public class OjectCopyTest {
+public class ObjectCopyTest {
 
     @Setter(onMethod_ = @Autowired)
     Member member;
@@ -27,6 +27,7 @@ public class OjectCopyTest {
         member.setAge(30);
         member.setEmail("whybwhy@gmail.com");
         member.setName("name");
+
     }
 
     @Test
