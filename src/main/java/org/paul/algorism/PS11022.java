@@ -6,8 +6,12 @@ package org.paul.algorism;
  */
 
 // 여기서부터 복사
-import java.util.*;
-public class Main {
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class PS11022 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
