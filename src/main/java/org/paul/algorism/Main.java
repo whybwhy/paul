@@ -10,28 +10,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int input = sc.nextInt();
-        sc.nextLine();
 
-        List<Integer> list = new ArrayList();
-        List<Integer> listA = new ArrayList();
-        List<Integer> listB = new ArrayList();
-        while (input > 0) {
-
-            String[] line = sc.nextLine().split(" ");
-            int a  = Integer.parseInt(line[0]);
-            int b = Integer.parseInt(line[1]);
-
-            list.add(a+b);
-            listA.add(a);
-            listB.add(b);
-            input = input -1;
-        }
-        int count = 1;
-        for(int a : list) {
-            System.out.println("Case #" + count + ": " + listA.get(count-1) + " + " +listB.get(count-1) + " = " + a);
-            count ++;
-        }
 
         sc.close();
     }
